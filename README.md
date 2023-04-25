@@ -1,17 +1,16 @@
-# Vercel Preview Database Github Action
+# Vercel Preview Database GitHub Action
 
 <p align="center">
-  <img width="360" src="logo.png" alt="Snappy looking through a magnifier with the Vercel logo in its center">
+  <img width="360" src="https://raw.githubusercontent.com/snaplet/vercel-action/main/logo.png" alt="Snappy looking through a magnifier with the Vercel logo in its center">
 </p>
 
+> Seamlessly deploy your web app with Vercel and create preview databases with Snaplet, filled with production-accurate data in no time.
 
-> Deploy your web with Vercel and preview databases with  Snaplet filled with production-accurate data in no time.
-
-With this action, you can finally enjoy fully isolated and stateful preview environments. Get a new preview database filled with production-accurate data anytime you need it and plug it into your Vercel preview process.
+This action empowers you to enjoy fully isolated and stateful preview environments. Easily create a new preview database filled with production-accurate data whenever needed and integrate it into your Vercel preview process.
 
 ## Usage
 
-Create a GitHub Action Workflow file in your repository following one of these examples.
+Create a GitHub Action Workflow file in your repository using one of the following examples:
 
 ```yaml
 # .github/workflows/preview.yml
@@ -41,22 +40,22 @@ jobs:
 ## Documentation
 
 ### Prerequisites
-[Connect your GitHub repository with Vercel](https://vercel.com/docs/concepts/git/vercel-for-github)
-[Fetch your Snaplet credentials](https://docs.snaplet.dev/guides/netlify-preview-plugin/#step-3-add-environment-variables)
-[Fetch your Vercel Access token](https://vercel.com/account/tokens)
+- [Connect your GitHub repository with Vercel](https://vercel.com/docs/concepts/git/vercel-for-github)
+- [Fetch your Snaplet credentials](https://docs.snaplet.dev/guides/netlify-preview-plugin/#step-3-add-environment-variables)
+- [Fetch your Vercel Access token](https://vercel.com/account/tokens)
 
 ### Environment variables
-- SNAPLET_ACCESS_TOKEN **[required]**
-- SNAPLET_PROJECT_ID **[required]**
-- VERCEL_ACCESS_TOKEN **[required]**
-- VERCEL_PROJECT_ID **[required]**
+- `SNAPLET_ACCESS_TOKEN` (required)
+- `SNAPLET_PROJECT_ID` (required)
+- `VERCEL_ACCESS_TOKEN` (required)
+- `VERCEL_PROJECT_ID` (required)
 
 ### Inputs
 
 ```yaml
   # Mixed action inputs
   delete:
-    description: Delete the preview on vercel and the instant database related to it
+    description: Delete the preview on Vercel and the instant database related to it
     required: false
     type: boolean
     default: ${{ github.event.action == 'closed' }}
@@ -72,7 +71,7 @@ jobs:
     type: string
     default: DATABASE_URL
   vercel-ignored-build-command:
-    description: Command set for the Ignored Build Step in your project settings, the default script is canceling every preview deployments coming from the Vercel GitHub App.
+    description: Command set for the Ignored Build Step in your project settings, the default script cancels every preview deployment coming from the Vercel GitHub App
     required: false
     type: string
     default: curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/v3/scripts/ignore-build.mjs" | node --input-type=module
@@ -88,10 +87,10 @@ jobs:
     type: string
     default: snaplet database delete --git
   database-url-command:
-    description: Command used to get the instant database url
+    description: Command used to get the instant database URL
     required: false
     type: string
-    default: snaplet database url --git
+    default: snaplet database
   database-reset:
     description: Reset the database state on each commit
     required: false

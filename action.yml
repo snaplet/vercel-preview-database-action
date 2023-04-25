@@ -18,7 +18,7 @@ inputs:
     type: boolean
     default: false
   vercel-env:
-    description: Environment variables to create on Vercel, they are scoped to the "preview" environment and the current branch
+    description: The environment variable name to set the preview database deployment URL
     required: false
     type: string
     default: DATABASE_URL
@@ -43,7 +43,7 @@ inputs:
     required: false
     type: string
     default: snaplet database url --git
-  reset:
+  database-reset:
     description: Reset the database state on each commit
     required: false
     type: boolean
@@ -67,7 +67,7 @@ runs:
         database-create-command: ${{ inputs.database-create-command }}
         database-delete-command: ${{ inputs.database-delete-command }}
         database-url-command: ${{ inputs.database-url-command }}
-        reset: ${{ inputs.reset }}
+        reset: ${{ inputs.database-reset }}
     - id: vercel
       uses: snaplet/vercel-action@v3
       with:
