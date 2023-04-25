@@ -1,0 +1,78 @@
+name: Vercel Snaplet Deployments
+
+author: Snaplet
+
+description: Use snaplet and vercel deployments to create a preview database for your vercel deployment.
+
+inputs:
+  # Mixed action inputs
+  delete:
+    description: Delete the preview on vercel and the instant database related to it
+    required: false
+    type: boolean
+    default: ${{ github.event.action == 'closed' }}
+  # Vercel action inputs
+  vercel-await-for-deployment:
+    description: Await for the deployment to be ready and output the deployment URL
+    required: false
+    type: boolean
+    default: false
+  vercel-env:
+    description: Environment variables to create on Vercel, they are scoped to the "preview" environment and the current branch
+    required: false
+    type: string
+    default: DATABASE_URL
+  vercel-ignored-build-command:
+    description: Command set for the Ignored Build Step in your project settings, the default script is canceling every preview deployments coming from the Vercel GitHub App.
+    required: false
+    type: string
+    default: curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/v3/scripts/ignore-build.mjs" | node --input-type=module
+  # Snaplet action inputs
+  database-create-command:
+    description: Command used to generate the instant database
+    required: false
+    type: string
+    default: snaplet database create --git --latest
+  database-delete-command:
+    description: Command used to delete the instant database
+    required: false
+    type: string
+    default: snaplet database delete --git
+  database-url-command:
+    description: Command used to get the instant database url
+    required: false
+    type: string
+    default: snaplet database url --git
+  reset:
+    description: Reset the database state on each commit
+    required: false
+    type: boolean
+    default: false
+
+outputs:
+  database-url:
+    description: Instant database url
+    value: ${{ steps.snaplet.outputs.database-url }}
+  deployment-url:
+    description: Preview deployment url
+    value: ${{ steps.vercel.outputs.deployment-url }}
+
+runs:
+  using: composite
+  steps:
+    - id: snaplet
+      uses: snaplet/action@v1
+      with:
+        delete: ${{ inputs.delete }}
+        database-create-command: ${{ inputs.database-create-command }}
+        database-delete-command: ${{ inputs.database-delete-command }}
+        database-url-command: ${{ inputs.database-url-command }}
+        reset: ${{ inputs.reset }}
+    - id: vercel
+      uses: snaplet/vercel-action@v3
+      with:
+        delete: ${{ inputs.delete }}
+        await-for-deployment: ${{ inputs.vercel-await-for-deployment }}
+        ignored-build-command: ${{ inputs.vercel-ignored-build-command }}
+        env: |
+          ${{ inputs.vercel-env }}=${{ steps.snaplet.outputs.database-url }}
