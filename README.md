@@ -50,7 +50,7 @@ jobs:
 - `VERCEL_ACCESS_TOKEN` (required)
 - `VERCEL_PROJECT_ID` (required)
 
-### Inputs
+### Optional Inputs
 
 ```yaml
   # Mixed action inputs
