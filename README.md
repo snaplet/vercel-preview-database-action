@@ -50,6 +50,15 @@ jobs:
 - `VERCEL_ACCESS_TOKEN` (required)
 - `VERCEL_PROJECT_ID` (required)
 
+### Outputs
+
+```yaml
+database-url:
+  description: Instant database url
+deployment-url:
+  description: Vercel preview deployment url
+```
+
 ### Optional Inputs
 
 ```yaml
@@ -96,13 +105,4 @@ jobs:
     required: false
     type: boolean
     default: false
-```
-
-### Outputs
-
-```yaml
-database-url:
-  description: Instant database url
-deployment-url:
-  description: Vercel preview deployment url
 ```
