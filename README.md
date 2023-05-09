@@ -85,7 +85,7 @@ jobs:
     description: Command used to delete the instant database
     required: false
     type: string
-    default: snaplet preview-database delete --git
+    default: snaplet preview-database drop --git
   database-url-command:
     description: Command used to get the instant database URL
     required: false
