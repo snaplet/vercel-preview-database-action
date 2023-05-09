@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: snaplet/vercel-preview-database-action@v2
+      - uses: snaplet/vercel-preview-database-action@v1
 ```
 
 ## Documentation
