@@ -61,7 +61,7 @@ runs:
   using: composite
   steps:
     - id: snaplet
-      uses: snaplet/action@v2
+      uses: snaplet/action@v1
       with:
         delete: ${{ inputs.delete }}
         database-create-command: ${{ inputs.database-create-command }}
