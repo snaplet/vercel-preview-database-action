@@ -90,7 +90,7 @@ jobs:
     description: Command used to get the instant database URL
     required: false
     type: string
-    default: snaplet preview-database
+    default: snaplet preview-database url --git
   database-reset:
     description: Reset the database state on each commit
     required: false
