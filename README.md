@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: snaplet/vercel-preview-database-action@v1
+      - uses: snaplet/vercel-preview-database-action@v2
 ```
 
 ## Documentation
@@ -80,17 +80,17 @@ jobs:
     description: Command used to generate the instant database
     required: false
     type: string
-    default: snaplet database create --git --latest
+    default: snaplet preview-database create --git --latest
   database-delete-command:
     description: Command used to delete the instant database
     required: false
     type: string
-    default: snaplet database delete --git
+    default: snaplet preview-database delete --git
   database-url-command:
     description: Command used to get the instant database URL
     required: false
     type: string
-    default: snaplet database
+    default: snaplet preview-database
   database-reset:
     description: Reset the database state on each commit
     required: false
