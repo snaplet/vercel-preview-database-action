@@ -49,6 +49,7 @@ jobs:
 - `SNAPLET_PROJECT_ID` (required)
 - `VERCEL_ACCESS_TOKEN` (required)
 - `VERCEL_PROJECT_ID` (required)
+- `VERCEL_TEAM_ID`
 
 ### Outputs
 
